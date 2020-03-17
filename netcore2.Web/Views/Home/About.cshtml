@@ -1,0 +1,105 @@
+﻿@using netcore2.Web.Models.VerfiModels
+@model netcore2.Web.Models.VerfiModels.User
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<form enctype="multipart/form-data" method="post" asp-controller="Home" asp-action="About">
+    <div class="form-group row">
+        <label asp-for="UserName" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="UserName" />
+            <span style="color:red" asp-validation-for="UserName"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="UserAge" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="UserAge" />
+            <span style="color:red" asp-validation-for="UserAge"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="IDCard" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="IDCard" />
+            <span style="color:red" asp-validation-for="IDCard"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Email" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="Email" />
+            <span style="color:red" asp-validation-for="Email"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Url" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="Url" />
+            <span style="color:red" asp-validation-for="Url"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="BirtheTime" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="BirtheTime" />
+            <span style="color:red" asp-validation-for="BirtheTime"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Photo" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input asp-for="Photo" type="file" style="display:none" multiple />
+            <div class="input-group">
+                <input id="photoCover" class="form-control" type="text" placeholder="请选择图片" />
+                <a class="input-group-addon" onclick="$('input[id=Photo]').click();">Browse</a>
+            </div>
+            <span style="color:red" asp-validation-for="Photo"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="roleInfo.RoleName" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <input class="form-control" asp-for="roleInfo.RoleName" />
+            <span style="color:red" asp-validation-for="roleInfo.RoleName"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="gender" class="col-sm-1"></label>
+        <div class="col-lg-10">
+            <select class="form-control" asp-for="gender" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+        </div>
+    </div>
+    <div>
+        <input class="btn btn-primary" type="submit" value="提交" />
+    </div>
+    <!--model级别-->
+    <div style="color:red" asp-validation-summary="ModelOnly"></div>
+    <!--错误总汇-->
+    <div style="color:red" asp-validation-summary="All"></div>
+</form>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('input[id=Photo]').change(function () {
+                var fileName = $(this).val().split("\\").pop();
+                var files = $(this)[0].files;
+                console.log(files)
+                if (files.length > 1) {
+                    $('#photoCover').val("您已选择了:" + files.length + "文件");
+                } else {
+                    $('#photoCover').val(files[0].name);
+                }
+
+            });
+        })
+
+    </script>
+
+}
+

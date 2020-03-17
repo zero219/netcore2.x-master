@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using netcore2.Web.Models.IdentityModels
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="nav navbar-nav navbar-right">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li>
+            <a asp-controller="Account" asp-action="Logout">注销</a>
+        </li>
+        <li>
+            <a  title="Manage">Hello!@User.Identity.Name!</a>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a asp-controller="Account" asp-action="Login">登录</a>
+        </li>
+        <li>
+            <a asp-controller="Account" asp-action="Register">注册</a>
+        </li>
+    }
+</ul>

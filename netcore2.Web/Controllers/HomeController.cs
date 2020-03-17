@@ -69,7 +69,7 @@ namespace netcore2.Web.Controllers
             if (ModelState.IsValid)
             {
                 string uniqueFileName = string.Empty;
-                //图片处理
+                //多张或一张图片处理
                 if (user.Photo != null && user.Photo.Count > 0)
                 {
                     foreach (var photo in user.Photo)

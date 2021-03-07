@@ -1,6 +1,13 @@
-﻿@{
+﻿@using netcore2.Web.Models.IocModels
+@inject IWelcomeService  welcomeService
+
+@{
     ViewData["Title"] = "Privacy Policy";
+    ViewData["Welcome"]= welcomeService.GetMessage();
 }
 <h2>@ViewData["Title"]</h2>
 
 <p>Use this page to detail your site's privacy policy.</p>
+
+<p>@ViewData["welcome"]</p>
+

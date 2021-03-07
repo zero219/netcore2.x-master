@@ -22,12 +22,14 @@ namespace netcore2.Web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+
 
         //此方法由运行时调用。使用此方法将服务添加到容器。
         public void ConfigureServices(IServiceCollection services)
@@ -131,7 +133,8 @@ namespace netcore2.Web
             if (env.IsDevelopment())//开发环境 
             {
                 app.UseDeveloperExceptionPage();//开发环境中错误页面
-                //app.UseStatusCodePages();//状态码
+                app.UseStatusCodePages();//状态码
+                app.UseDatabaseErrorPage();//数据库迁移错误页面
                 //app.UseWelcomePage();//欢迎页面
             }
             else

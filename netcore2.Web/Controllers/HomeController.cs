@@ -52,15 +52,15 @@ namespace netcore2.Web.Controllers
             return View();
         }
 
-        [Authorize(Roles = "Administrators")]//角色
-        [Authorize(Policy = "仅限About")]
+        //[Authorize(Roles = "Administrators")]//角色
+        //[Authorize(Policy = "仅限About")]
         public IActionResult About()
         {
             return View();
         }
 
-        [Authorize(Roles = "Administrators")]//角色
-        [Authorize(Policy = "仅限About")]
+        //[Authorize(Roles = "Administrators")]//角色
+        //[Authorize(Policy = "仅限About")]
         [HttpPost]
         [ValidateAntiForgeryToken]//单个防止CSRF
         [IgnoreAntiforgeryToken]//不防止CSRF
@@ -140,14 +140,14 @@ namespace netcore2.Web.Controllers
             ConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
             //获取根目录
             configurationBuilder.SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+            //构建configurationBuilder对象
             var configuration = configurationBuilder.Build();
             //获取字符串
             var conectString = configuration.GetConnectionString("DefaultConnection");
 
             var AllowedHosts = configuration["AllowedHosts"];
             //如果有json中数组的话就添加0索引
-            var Default = configuration["Logging:LogLevel:Default"];
-
+            var Default = configuration["Logging:Console:LogLevel:Default"];
             #endregion
             return Content(Default);
         }

@@ -9,9 +9,7 @@ namespace netcore2.Web.Models.VerfiModels
 {
     public class User
     {
-        [Display(Name = "名称")]
-        [Required(ErrorMessage = "{0}不能为空")]
-        [MaxLength(10, ErrorMessage = "长度不超过10个")]
+        [Display(Name = "名称"), Required(ErrorMessage = "{0}不能为空"), MaxLength(10, ErrorMessage = "长度不超过10个")]
         public string UserName { get; set; }
 
         [Display(Name = "年龄")]
@@ -26,7 +24,7 @@ namespace netcore2.Web.Models.VerfiModels
         [Display(Name = "邮箱地址")]
         [Required(ErrorMessage = "{0}不能为空")]
         [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?")]
+        [RegularExpression(@"[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?", ErrorMessage = "邮箱格式不正确")]
         public string Email { get; set; }
 
         [Display(Name = "Url")]

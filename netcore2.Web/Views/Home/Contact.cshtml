@@ -1,15 +1,16 @@
-﻿@{
+﻿@tagHelperPrefix "my:"
+@{
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 
-<email>303368764@qq.com</email>
+<my:email>303368764@qq.com</my:email>
 
-<bold my-style="@(new netcore2.Web.Models.TagHelpersModels.MyStyle{  Color = "red", FontSize=36,  FontFamily="宋体"  })">红色字体</bold>
+<my:bold my-style="@(new netcore2.Web.Models.TagHelpersModels.MyStyle{  Color = "red", FontSize=36,  FontFamily="宋体"  })">红色字体</my:bold>
 
-<p bold my-style="@(new netcore2.Web.Models.TagHelpersModels.MyStyle{  Color = "green", FontSize=25,  FontFamily="微软雅黑"  })">绿色字体</p>
+<my:p bold my-style="@(new netcore2.Web.Models.TagHelpersModels.MyStyle{  Color = "green", FontSize=25,  FontFamily="微软雅黑"  })">绿色字体</my:p>
 
 <address>
     One Microsoft Way<br />

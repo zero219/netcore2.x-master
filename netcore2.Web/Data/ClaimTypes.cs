@@ -12,8 +12,7 @@ namespace netcore2.Web.Data
             "About",
             "Contact",
             "用户管理",
-            "角色管理",
-
+            "角色管理"
         };
     }
 }

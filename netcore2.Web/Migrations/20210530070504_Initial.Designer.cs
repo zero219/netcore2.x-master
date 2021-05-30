@@ -10,7 +10,7 @@ using netcore2.Web.Data;
 namespace netcore2.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200310060722_Initial")]
+    [Migration("20210530070504_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,7 +138,7 @@ namespace netcore2.Web.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<DateTime>("BirthDate");
+                    b.Property<DateTime?>("BirthDate");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();

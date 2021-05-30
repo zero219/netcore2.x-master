@@ -52,15 +52,15 @@ namespace netcore2.Web.Controllers
             return View();
         }
 
-        //[Authorize(Roles = "Administrators")]//角色
-        //[Authorize(Policy = "仅限About")]
+        [Authorize(Roles = "Administrators")]//角色
+        [Authorize(Policy = "仅限About")]
         public IActionResult About()
         {
             return View();
         }
 
-        //[Authorize(Roles = "Administrators")]//角色
-        //[Authorize(Policy = "仅限About")]
+        [Authorize(Roles = "Administrators")]//角色
+        [Authorize(Policy = "仅限About")]
         [HttpPost]
         [ValidateAntiForgeryToken]//单个防止CSRF
         [IgnoreAntiforgeryToken]//不防止CSRF
@@ -87,8 +87,8 @@ namespace netcore2.Web.Controllers
         }
 
 
-        //[Authorize(Policy ="仅限管理员")]
-        //[Authorize(Policy = "仅限联系人")]
+        [Authorize(Policy = "仅限管理员")]
+        [Authorize(Policy = "仅限联系人")]
         [Authorize(Policy = "自定义的权限")]
         public IActionResult Contact()
         {

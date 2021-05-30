@@ -42,7 +42,7 @@ namespace netcore2.Web.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     IdCardNo = table.Column<string>(maxLength: 18, nullable: true),
-                    BirthDate = table.Column<DateTime>(nullable: false)
+                    BirthDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {

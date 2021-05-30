@@ -18,6 +18,7 @@ using netcore2.Web.Models.VerfiModels;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 
+
 namespace netcore2.Web.Controllers
 {
 
@@ -36,10 +37,12 @@ namespace netcore2.Web.Controllers
         /// 缓存
         /// </summary>
         private readonly IMemoryCache _memoryCache;
+       
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        private readonly IHostingEnvironment _hostingEnvironment;
-
-        public HomeController(IWelcomeService welcomeService, HtmlEncoder htmlEncoder, ILogger<HomeController> logger, IMemoryCache memoryCache, IHostingEnvironment hostingEnvironment)
+        
+        public HomeController(IWelcomeService welcomeService, HtmlEncoder htmlEncoder, ILogger<HomeController> logger, IMemoryCache memoryCache,
+            IWebHostEnvironment hostingEnvironment)
         {
             this._welcomeService = welcomeService;
             this._htmlEncoder = htmlEncoder;

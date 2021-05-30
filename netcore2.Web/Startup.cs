@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,14 +24,10 @@ namespace netcore2.Web
     public class Startup
     {
         public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-
-
         //此方法由运行时调用。使用此方法将服务添加到容器。
         public void ConfigureServices(IServiceCollection services)
         {
@@ -112,13 +109,10 @@ namespace netcore2.Web
                 options.SuppressXFrameOptionsHeader = false;
             });
 
-            //注册mvc服务(AddMvcCore()只添加最核心的MVC服务,AddMvc()方法添加了所有必须的mvc服务，并且在内部调用AddMvc()方法)
-            //service.AddMvcCore();
-            services.AddMvc(options =>
-            {
-                //全局注册CSRF
-                options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddControllersWithViews(options =>
+               //全局注册CSRF
+               options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute())
+            );
 
             #region 缓存
             //缓存
@@ -128,7 +122,7 @@ namespace netcore2.Web
         }
 
         //此方法由运行时调用。使用此方法配置HTTP请求管道。
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())//开发环境 
             {
@@ -152,15 +146,16 @@ namespace netcore2.Web
             app.UseCookiePolicy();
             //使用授权
             app.UseAuthentication();
-            //远程验证
-            app.UseMvcWithDefaultRoute();
 
-            app.UseMvc(routes =>
+            app.UseRouting();
+            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

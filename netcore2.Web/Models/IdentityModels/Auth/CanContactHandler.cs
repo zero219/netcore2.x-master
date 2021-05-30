@@ -15,7 +15,7 @@ namespace netcore2.Web.Models.IdentityModels.Auth
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ActionRequirement requirement)
         {
-            if (context.User.IsInRole("Contact"))
+            if (context.User.IsInRole("Ordinary"))
             {
                 context.Succeed(requirement);
             }

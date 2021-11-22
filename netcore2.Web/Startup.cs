@@ -99,6 +99,13 @@ namespace netcore2.Web
             services.AddSingleton<IAuthorizationHandler, EmailHandler>();
             services.AddSingleton<IAuthorizationHandler, CanContactHandler>();
             services.AddSingleton<IAuthorizationHandler, CanAdminHandler>();
+
+            //添加Cookie
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.Cookie.Name = "application_cookie";
+                config.LoginPath = "/Account/Login";
+            });
             #endregion
 
             //全局添加CSRF

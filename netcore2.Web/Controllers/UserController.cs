@@ -34,7 +34,11 @@ namespace netcore2.Web.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// 添加用户
+        /// </summary>
+        /// <param name="userAddViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> AddUser(UserAddViewModel userAddViewModel)
         {
@@ -66,7 +70,11 @@ namespace netcore2.Web.Controllers
             return View(userAddViewModel);
 
         }
-
+        /// <summary>
+        /// 查询用户以及claim
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> EditUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -90,6 +98,12 @@ namespace netcore2.Web.Controllers
             return View(vm);
         }
 
+        /// <summary>
+        /// 修改用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="userEditViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> EditUser(string id, UserEditViewModel userEditViewModel)
         {
@@ -114,6 +128,11 @@ namespace netcore2.Web.Controllers
             return View(userEditViewModel);
         }
 
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> DeleteUser(string id)
         {
@@ -136,6 +155,11 @@ namespace netcore2.Web.Controllers
             return View("Index", await _userManager.Users.ToListAsync());
         }
 
+        /// <summary>
+        /// 查询用户的claim
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> ManageClaims(string id)
         {
             var user = await _userManager.Users.Include(x => x.Claims)
@@ -156,6 +180,11 @@ namespace netcore2.Web.Controllers
             return View(vm);
         }
 
+        /// <summary>
+        /// 编辑用户的claim
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> ManageClaims(ManageClaimsViewModel vm)
         {
@@ -183,6 +212,12 @@ namespace netcore2.Web.Controllers
             return View(vm);
         }
 
+        /// <summary>
+        /// 删除用户的claim
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="claim"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> RemoveClaim(string id, string claim)
         {
